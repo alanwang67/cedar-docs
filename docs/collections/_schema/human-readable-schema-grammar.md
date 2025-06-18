@@ -14,8 +14,6 @@ The grammar applies the following conventions.
 + Words with initial capital letters designate grammar constructs.
 + Words in all capital letters designate lexical tokens.
 
-When productions or tokens match those in the Cedar policy grammar, use the same names, for example `IDENT` and `Path`.
-
 Grammar constructs use the following symbols:
 + `|` designates alternatives.
 + `[]` designates optional productions.
@@ -57,7 +55,8 @@ Name      := IDENT | STR
 Names     := Name {',' Name}
 Idents    := IDENT {',' IDENT}
 
-IDENT     := ['_''a'-'z''A'-'Z']['_''a'-'z''A'-'Z''0'-'9']*
+IDENT     := ['_''a'-'z''A'-'Z']['_''a'-'z''A'-'Z''0'-'9']* - IDENTRESERVED
+IDENTRESERVED := 'true' | 'false' | 'if' | 'then' | 'else' | 'in' | 'like' | 'has' | 'is' | '__cedar'
 TYPENAME  := IDENT - RESERVED
 STR       := Fully-escaped Unicode surrounded by '"'s
 PRIMTYPE  := 'Long' | 'String' | 'Bool'
